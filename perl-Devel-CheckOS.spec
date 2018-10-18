@@ -4,19 +4,20 @@
 #
 Name     : perl-Devel-CheckOS
 Version  : 1.81
-Release  : 1
+Release  : 2
 URL      : https://cpan.metacpan.org/authors/id/D/DC/DCANTRELL/Devel-CheckOS-1.81.tar.gz
 Source0  : https://cpan.metacpan.org/authors/id/D/DC/DCANTRELL/Devel-CheckOS-1.81.tar.gz
 Summary  : unknown
 Group    : Development/Tools
 License  : Artistic-1.0-Perl GPL-2.0
-Requires: perl-Devel-CheckOS-bin
-Requires: perl-Devel-CheckOS-license
-Requires: perl-Devel-CheckOS-man
-Requires: perl(Data::Compare)
-Requires: perl(File::Find::Rule)
+Requires: perl-Devel-CheckOS-bin = %{version}-%{release}
+Requires: perl-Devel-CheckOS-license = %{version}-%{release}
+Requires: perl-Devel-CheckOS-man = %{version}-%{release}
+BuildRequires : buildreq-cpan
 BuildRequires : perl(Data::Compare)
 BuildRequires : perl(File::Find::Rule)
+BuildRequires : perl(Number::Compare)
+BuildRequires : perl(Text::Glob)
 
 %description
 This module provides a nice interface to looking at $^O, and also lets
@@ -26,20 +27,21 @@ AIX, HPUX, Solaris etc).
 %package bin
 Summary: bin components for the perl-Devel-CheckOS package.
 Group: Binaries
-Requires: perl-Devel-CheckOS-license
-Requires: perl-Devel-CheckOS-man
+Requires: perl-Devel-CheckOS-license = %{version}-%{release}
+Requires: perl-Devel-CheckOS-man = %{version}-%{release}
 
 %description bin
 bin components for the perl-Devel-CheckOS package.
 
 
-%package doc
-Summary: doc components for the perl-Devel-CheckOS package.
-Group: Documentation
-Requires: perl-Devel-CheckOS-man
+%package dev
+Summary: dev components for the perl-Devel-CheckOS package.
+Group: Development
+Requires: perl-Devel-CheckOS-bin = %{version}-%{release}
+Provides: perl-Devel-CheckOS-devel = %{version}-%{release}
 
-%description doc
-doc components for the perl-Devel-CheckOS package.
+%description dev
+dev components for the perl-Devel-CheckOS package.
 
 
 %package license
@@ -83,13 +85,13 @@ make TEST_VERBOSE=1 test
 
 %install
 rm -rf %{buildroot}
-mkdir -p %{buildroot}/usr/share/doc/perl-Devel-CheckOS
-cp GPL2.txt %{buildroot}/usr/share/doc/perl-Devel-CheckOS/GPL2.txt
-cp ARTISTIC.txt %{buildroot}/usr/share/doc/perl-Devel-CheckOS/ARTISTIC.txt
+mkdir -p %{buildroot}/usr/share/package-licenses/perl-Devel-CheckOS
+cp ARTISTIC.txt %{buildroot}/usr/share/package-licenses/perl-Devel-CheckOS/ARTISTIC.txt
+cp GPL2.txt %{buildroot}/usr/share/package-licenses/perl-Devel-CheckOS/GPL2.txt
 if test -f Makefile.PL; then
-make pure_install PERL_INSTALL_ROOT=%{buildroot}
+make pure_install PERL_INSTALL_ROOT=%{buildroot} INSTALLDIRS=vendor
 else
-./Build install --installdirs=site --destdir=%{buildroot}
+./Build install --installdirs=vendor --destdir=%{buildroot}
 fi
 find %{buildroot} -type f -name .packlist -exec rm -f {} ';'
 find %{buildroot} -depth -type d -exec rmdir {} 2>/dev/null ';'
@@ -98,99 +100,90 @@ find %{buildroot} -type f -name '*.bs' -empty -exec rm -f {} ';'
 
 %files
 %defattr(-,root,root,-)
-/usr/lib/perl5/site_perl/5.26.1/Devel/AssertOS.pm
-/usr/lib/perl5/site_perl/5.26.1/Devel/AssertOS/AIX.pm
-/usr/lib/perl5/site_perl/5.26.1/Devel/AssertOS/Amiga.pm
-/usr/lib/perl5/site_perl/5.26.1/Devel/AssertOS/Android.pm
-/usr/lib/perl5/site_perl/5.26.1/Devel/AssertOS/Apple.pm
-/usr/lib/perl5/site_perl/5.26.1/Devel/AssertOS/BSDOS.pm
-/usr/lib/perl5/site_perl/5.26.1/Devel/AssertOS/BeOS.pm
-/usr/lib/perl5/site_perl/5.26.1/Devel/AssertOS/Bitrig.pm
-/usr/lib/perl5/site_perl/5.26.1/Devel/AssertOS/Cygwin.pm
-/usr/lib/perl5/site_perl/5.26.1/Devel/AssertOS/DEC.pm
-/usr/lib/perl5/site_perl/5.26.1/Devel/AssertOS/DGUX.pm
-/usr/lib/perl5/site_perl/5.26.1/Devel/AssertOS/DragonflyBSD.pm
-/usr/lib/perl5/site_perl/5.26.1/Devel/AssertOS/Dynix.pm
-/usr/lib/perl5/site_perl/5.26.1/Devel/AssertOS/EBCDIC.pm
-/usr/lib/perl5/site_perl/5.26.1/Devel/AssertOS/Extending.pod
-/usr/lib/perl5/site_perl/5.26.1/Devel/AssertOS/FreeBSD.pm
-/usr/lib/perl5/site_perl/5.26.1/Devel/AssertOS/GNUkFreeBSD.pm
-/usr/lib/perl5/site_perl/5.26.1/Devel/AssertOS/HPUX.pm
-/usr/lib/perl5/site_perl/5.26.1/Devel/AssertOS/Haiku.pm
-/usr/lib/perl5/site_perl/5.26.1/Devel/AssertOS/Hurd.pm
-/usr/lib/perl5/site_perl/5.26.1/Devel/AssertOS/Interix.pm
-/usr/lib/perl5/site_perl/5.26.1/Devel/AssertOS/Irix.pm
-/usr/lib/perl5/site_perl/5.26.1/Devel/AssertOS/Linux.pm
-/usr/lib/perl5/site_perl/5.26.1/Devel/AssertOS/Linux/Debian.pm
-/usr/lib/perl5/site_perl/5.26.1/Devel/AssertOS/Linux/v2_6.pm
-/usr/lib/perl5/site_perl/5.26.1/Devel/AssertOS/MPEiX.pm
-/usr/lib/perl5/site_perl/5.26.1/Devel/AssertOS/MSDOS.pm
-/usr/lib/perl5/site_perl/5.26.1/Devel/AssertOS/MSWin32.pm
-/usr/lib/perl5/site_perl/5.26.1/Devel/AssertOS/MacOSX.pm
-/usr/lib/perl5/site_perl/5.26.1/Devel/AssertOS/MacOSX/v10_0.pm
-/usr/lib/perl5/site_perl/5.26.1/Devel/AssertOS/MacOSX/v10_1.pm
-/usr/lib/perl5/site_perl/5.26.1/Devel/AssertOS/MacOSX/v10_10.pm
-/usr/lib/perl5/site_perl/5.26.1/Devel/AssertOS/MacOSX/v10_11.pm
-/usr/lib/perl5/site_perl/5.26.1/Devel/AssertOS/MacOSX/v10_12.pm
-/usr/lib/perl5/site_perl/5.26.1/Devel/AssertOS/MacOSX/v10_2.pm
-/usr/lib/perl5/site_perl/5.26.1/Devel/AssertOS/MacOSX/v10_3.pm
-/usr/lib/perl5/site_perl/5.26.1/Devel/AssertOS/MacOSX/v10_4.pm
-/usr/lib/perl5/site_perl/5.26.1/Devel/AssertOS/MacOSX/v10_5.pm
-/usr/lib/perl5/site_perl/5.26.1/Devel/AssertOS/MacOSX/v10_6.pm
-/usr/lib/perl5/site_perl/5.26.1/Devel/AssertOS/MacOSX/v10_7.pm
-/usr/lib/perl5/site_perl/5.26.1/Devel/AssertOS/MacOSX/v10_8.pm
-/usr/lib/perl5/site_perl/5.26.1/Devel/AssertOS/MacOSX/v10_9.pm
-/usr/lib/perl5/site_perl/5.26.1/Devel/AssertOS/MacOSclassic.pm
-/usr/lib/perl5/site_perl/5.26.1/Devel/AssertOS/MachTen.pm
-/usr/lib/perl5/site_perl/5.26.1/Devel/AssertOS/MicrosoftWindows.pm
-/usr/lib/perl5/site_perl/5.26.1/Devel/AssertOS/MidnightBSD.pm
-/usr/lib/perl5/site_perl/5.26.1/Devel/AssertOS/Minix.pm
-/usr/lib/perl5/site_perl/5.26.1/Devel/AssertOS/MirOSBSD.pm
-/usr/lib/perl5/site_perl/5.26.1/Devel/AssertOS/NeXT.pm
-/usr/lib/perl5/site_perl/5.26.1/Devel/AssertOS/NetBSD.pm
-/usr/lib/perl5/site_perl/5.26.1/Devel/AssertOS/Netware.pm
-/usr/lib/perl5/site_perl/5.26.1/Devel/AssertOS/OS2.pm
-/usr/lib/perl5/site_perl/5.26.1/Devel/AssertOS/OS390.pm
-/usr/lib/perl5/site_perl/5.26.1/Devel/AssertOS/OS400.pm
-/usr/lib/perl5/site_perl/5.26.1/Devel/AssertOS/OSF.pm
-/usr/lib/perl5/site_perl/5.26.1/Devel/AssertOS/OSFeatures/POSIXShellRedirection.pm
-/usr/lib/perl5/site_perl/5.26.1/Devel/AssertOS/OpenBSD.pm
-/usr/lib/perl5/site_perl/5.26.1/Devel/AssertOS/POSIXBC.pm
-/usr/lib/perl5/site_perl/5.26.1/Devel/AssertOS/QNX.pm
-/usr/lib/perl5/site_perl/5.26.1/Devel/AssertOS/QNX/Neutrino.pm
-/usr/lib/perl5/site_perl/5.26.1/Devel/AssertOS/QNX/v4.pm
-/usr/lib/perl5/site_perl/5.26.1/Devel/AssertOS/RISCOS.pm
-/usr/lib/perl5/site_perl/5.26.1/Devel/AssertOS/Realtime.pm
-/usr/lib/perl5/site_perl/5.26.1/Devel/AssertOS/SCO.pm
-/usr/lib/perl5/site_perl/5.26.1/Devel/AssertOS/Solaris.pm
-/usr/lib/perl5/site_perl/5.26.1/Devel/AssertOS/Sun.pm
-/usr/lib/perl5/site_perl/5.26.1/Devel/AssertOS/SunOS.pm
-/usr/lib/perl5/site_perl/5.26.1/Devel/AssertOS/SysVr4.pm
-/usr/lib/perl5/site_perl/5.26.1/Devel/AssertOS/SysVr5.pm
-/usr/lib/perl5/site_perl/5.26.1/Devel/AssertOS/Unicos.pm
-/usr/lib/perl5/site_perl/5.26.1/Devel/AssertOS/Unix.pm
-/usr/lib/perl5/site_perl/5.26.1/Devel/AssertOS/VMESA.pm
-/usr/lib/perl5/site_perl/5.26.1/Devel/AssertOS/VMS.pm
-/usr/lib/perl5/site_perl/5.26.1/Devel/AssertOS/VOS.pm
-/usr/lib/perl5/site_perl/5.26.1/Devel/AssertOS/iOS.pm
-/usr/lib/perl5/site_perl/5.26.1/Devel/CheckOS.pm
-/usr/lib/perl5/site_perl/5.26.1/Devel/CheckOS/Families.pod
+/usr/lib/perl5/vendor_perl/5.26.1/Devel/AssertOS.pm
+/usr/lib/perl5/vendor_perl/5.26.1/Devel/AssertOS/AIX.pm
+/usr/lib/perl5/vendor_perl/5.26.1/Devel/AssertOS/Amiga.pm
+/usr/lib/perl5/vendor_perl/5.26.1/Devel/AssertOS/Android.pm
+/usr/lib/perl5/vendor_perl/5.26.1/Devel/AssertOS/Apple.pm
+/usr/lib/perl5/vendor_perl/5.26.1/Devel/AssertOS/BSDOS.pm
+/usr/lib/perl5/vendor_perl/5.26.1/Devel/AssertOS/BeOS.pm
+/usr/lib/perl5/vendor_perl/5.26.1/Devel/AssertOS/Bitrig.pm
+/usr/lib/perl5/vendor_perl/5.26.1/Devel/AssertOS/Cygwin.pm
+/usr/lib/perl5/vendor_perl/5.26.1/Devel/AssertOS/DEC.pm
+/usr/lib/perl5/vendor_perl/5.26.1/Devel/AssertOS/DGUX.pm
+/usr/lib/perl5/vendor_perl/5.26.1/Devel/AssertOS/DragonflyBSD.pm
+/usr/lib/perl5/vendor_perl/5.26.1/Devel/AssertOS/Dynix.pm
+/usr/lib/perl5/vendor_perl/5.26.1/Devel/AssertOS/EBCDIC.pm
+/usr/lib/perl5/vendor_perl/5.26.1/Devel/AssertOS/Extending.pod
+/usr/lib/perl5/vendor_perl/5.26.1/Devel/AssertOS/FreeBSD.pm
+/usr/lib/perl5/vendor_perl/5.26.1/Devel/AssertOS/GNUkFreeBSD.pm
+/usr/lib/perl5/vendor_perl/5.26.1/Devel/AssertOS/HPUX.pm
+/usr/lib/perl5/vendor_perl/5.26.1/Devel/AssertOS/Haiku.pm
+/usr/lib/perl5/vendor_perl/5.26.1/Devel/AssertOS/Hurd.pm
+/usr/lib/perl5/vendor_perl/5.26.1/Devel/AssertOS/Interix.pm
+/usr/lib/perl5/vendor_perl/5.26.1/Devel/AssertOS/Irix.pm
+/usr/lib/perl5/vendor_perl/5.26.1/Devel/AssertOS/Linux.pm
+/usr/lib/perl5/vendor_perl/5.26.1/Devel/AssertOS/Linux/Debian.pm
+/usr/lib/perl5/vendor_perl/5.26.1/Devel/AssertOS/Linux/v2_6.pm
+/usr/lib/perl5/vendor_perl/5.26.1/Devel/AssertOS/MPEiX.pm
+/usr/lib/perl5/vendor_perl/5.26.1/Devel/AssertOS/MSDOS.pm
+/usr/lib/perl5/vendor_perl/5.26.1/Devel/AssertOS/MSWin32.pm
+/usr/lib/perl5/vendor_perl/5.26.1/Devel/AssertOS/MacOSX.pm
+/usr/lib/perl5/vendor_perl/5.26.1/Devel/AssertOS/MacOSX/v10_0.pm
+/usr/lib/perl5/vendor_perl/5.26.1/Devel/AssertOS/MacOSX/v10_1.pm
+/usr/lib/perl5/vendor_perl/5.26.1/Devel/AssertOS/MacOSX/v10_10.pm
+/usr/lib/perl5/vendor_perl/5.26.1/Devel/AssertOS/MacOSX/v10_11.pm
+/usr/lib/perl5/vendor_perl/5.26.1/Devel/AssertOS/MacOSX/v10_12.pm
+/usr/lib/perl5/vendor_perl/5.26.1/Devel/AssertOS/MacOSX/v10_2.pm
+/usr/lib/perl5/vendor_perl/5.26.1/Devel/AssertOS/MacOSX/v10_3.pm
+/usr/lib/perl5/vendor_perl/5.26.1/Devel/AssertOS/MacOSX/v10_4.pm
+/usr/lib/perl5/vendor_perl/5.26.1/Devel/AssertOS/MacOSX/v10_5.pm
+/usr/lib/perl5/vendor_perl/5.26.1/Devel/AssertOS/MacOSX/v10_6.pm
+/usr/lib/perl5/vendor_perl/5.26.1/Devel/AssertOS/MacOSX/v10_7.pm
+/usr/lib/perl5/vendor_perl/5.26.1/Devel/AssertOS/MacOSX/v10_8.pm
+/usr/lib/perl5/vendor_perl/5.26.1/Devel/AssertOS/MacOSX/v10_9.pm
+/usr/lib/perl5/vendor_perl/5.26.1/Devel/AssertOS/MacOSclassic.pm
+/usr/lib/perl5/vendor_perl/5.26.1/Devel/AssertOS/MachTen.pm
+/usr/lib/perl5/vendor_perl/5.26.1/Devel/AssertOS/MicrosoftWindows.pm
+/usr/lib/perl5/vendor_perl/5.26.1/Devel/AssertOS/MidnightBSD.pm
+/usr/lib/perl5/vendor_perl/5.26.1/Devel/AssertOS/Minix.pm
+/usr/lib/perl5/vendor_perl/5.26.1/Devel/AssertOS/MirOSBSD.pm
+/usr/lib/perl5/vendor_perl/5.26.1/Devel/AssertOS/NeXT.pm
+/usr/lib/perl5/vendor_perl/5.26.1/Devel/AssertOS/NetBSD.pm
+/usr/lib/perl5/vendor_perl/5.26.1/Devel/AssertOS/Netware.pm
+/usr/lib/perl5/vendor_perl/5.26.1/Devel/AssertOS/OS2.pm
+/usr/lib/perl5/vendor_perl/5.26.1/Devel/AssertOS/OS390.pm
+/usr/lib/perl5/vendor_perl/5.26.1/Devel/AssertOS/OS400.pm
+/usr/lib/perl5/vendor_perl/5.26.1/Devel/AssertOS/OSF.pm
+/usr/lib/perl5/vendor_perl/5.26.1/Devel/AssertOS/OSFeatures/POSIXShellRedirection.pm
+/usr/lib/perl5/vendor_perl/5.26.1/Devel/AssertOS/OpenBSD.pm
+/usr/lib/perl5/vendor_perl/5.26.1/Devel/AssertOS/POSIXBC.pm
+/usr/lib/perl5/vendor_perl/5.26.1/Devel/AssertOS/QNX.pm
+/usr/lib/perl5/vendor_perl/5.26.1/Devel/AssertOS/QNX/Neutrino.pm
+/usr/lib/perl5/vendor_perl/5.26.1/Devel/AssertOS/QNX/v4.pm
+/usr/lib/perl5/vendor_perl/5.26.1/Devel/AssertOS/RISCOS.pm
+/usr/lib/perl5/vendor_perl/5.26.1/Devel/AssertOS/Realtime.pm
+/usr/lib/perl5/vendor_perl/5.26.1/Devel/AssertOS/SCO.pm
+/usr/lib/perl5/vendor_perl/5.26.1/Devel/AssertOS/Solaris.pm
+/usr/lib/perl5/vendor_perl/5.26.1/Devel/AssertOS/Sun.pm
+/usr/lib/perl5/vendor_perl/5.26.1/Devel/AssertOS/SunOS.pm
+/usr/lib/perl5/vendor_perl/5.26.1/Devel/AssertOS/SysVr4.pm
+/usr/lib/perl5/vendor_perl/5.26.1/Devel/AssertOS/SysVr5.pm
+/usr/lib/perl5/vendor_perl/5.26.1/Devel/AssertOS/Unicos.pm
+/usr/lib/perl5/vendor_perl/5.26.1/Devel/AssertOS/Unix.pm
+/usr/lib/perl5/vendor_perl/5.26.1/Devel/AssertOS/VMESA.pm
+/usr/lib/perl5/vendor_perl/5.26.1/Devel/AssertOS/VMS.pm
+/usr/lib/perl5/vendor_perl/5.26.1/Devel/AssertOS/VOS.pm
+/usr/lib/perl5/vendor_perl/5.26.1/Devel/AssertOS/iOS.pm
+/usr/lib/perl5/vendor_perl/5.26.1/Devel/CheckOS.pm
+/usr/lib/perl5/vendor_perl/5.26.1/Devel/CheckOS/Families.pod
 
 %files bin
 %defattr(-,root,root,-)
 /usr/bin/use-devel-assertos
 
-%files doc
-%defattr(0644,root,root,0755)
-%doc /usr/share/doc/perl\-Devel\-CheckOS/*
-
-%files license
+%files dev
 %defattr(-,root,root,-)
-/usr/share/doc/perl-Devel-CheckOS/GPL2.txt
-
-%files man
-%defattr(-,root,root,-)
-/usr/share/man/man1/use-devel-assertos.1
 /usr/share/man/man3/Devel::AssertOS.3
 /usr/share/man/man3/Devel::AssertOS::AIX.3
 /usr/share/man/man3/Devel::AssertOS::Amiga.3
@@ -267,3 +260,12 @@ find %{buildroot} -type f -name '*.bs' -empty -exec rm -f {} ';'
 /usr/share/man/man3/Devel::AssertOS::iOS.3
 /usr/share/man/man3/Devel::CheckOS.3
 /usr/share/man/man3/Devel::CheckOS::Families.3
+
+%files license
+%defattr(0644,root,root,0755)
+/usr/share/package-licenses/perl-Devel-CheckOS/ARTISTIC.txt
+/usr/share/package-licenses/perl-Devel-CheckOS/GPL2.txt
+
+%files man
+%defattr(0644,root,root,0755)
+/usr/share/man/man1/use-devel-assertos.1
