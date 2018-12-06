@@ -4,7 +4,7 @@
 #
 Name     : perl-Devel-CheckOS
 Version  : 1.81
-Release  : 7
+Release  : 8
 URL      : https://cpan.metacpan.org/authors/id/D/DC/DCANTRELL/Devel-CheckOS-1.81.tar.gz
 Source0  : https://cpan.metacpan.org/authors/id/D/DC/DCANTRELL/Devel-CheckOS-1.81.tar.gz
 Summary  : unknown
