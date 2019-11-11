@@ -1,4 +1,5 @@
 1.81
+perl(Clone)
 perl(Data::Compare)
 perl(File::Find::Rule)
 perl(Number::Compare)
