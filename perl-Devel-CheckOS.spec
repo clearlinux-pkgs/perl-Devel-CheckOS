@@ -6,10 +6,10 @@
 # autospec commit: 5905be9
 #
 Name     : perl-Devel-CheckOS
-Version  : 2.00
-Release  : 33
-URL      : https://cpan.metacpan.org/authors/id/D/DC/DCANTRELL/Devel-CheckOS-2.00.tar.gz
-Source0  : https://cpan.metacpan.org/authors/id/D/DC/DCANTRELL/Devel-CheckOS-2.00.tar.gz
+Version  : 2.01
+Release  : 34
+URL      : https://cpan.metacpan.org/authors/id/D/DC/DCANTRELL/Devel-CheckOS-2.01.tar.gz
+Source0  : https://cpan.metacpan.org/authors/id/D/DC/DCANTRELL/Devel-CheckOS-2.01.tar.gz
 Summary  : unknown
 Group    : Development/Tools
 License  : Artistic-1.0-Perl GPL-2.0
@@ -75,10 +75,10 @@ perl components for the perl-Devel-CheckOS package.
 
 
 %prep
-%setup -q -n Devel-CheckOS-2.00
-cd %{_builddir}/Devel-CheckOS-2.00
+%setup -q -n Devel-CheckOS-2.01
+cd %{_builddir}/Devel-CheckOS-2.01
 pushd ..
-cp -a Devel-CheckOS-2.00 buildavx2
+cp -a Devel-CheckOS-2.01 buildavx2
 popd
 
 %build
