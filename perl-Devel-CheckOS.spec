@@ -6,10 +6,10 @@
 # autospec commit: 5905be9
 #
 Name     : perl-Devel-CheckOS
-Version  : 2.01
-Release  : 34
-URL      : https://cpan.metacpan.org/authors/id/D/DC/DCANTRELL/Devel-CheckOS-2.01.tar.gz
-Source0  : https://cpan.metacpan.org/authors/id/D/DC/DCANTRELL/Devel-CheckOS-2.01.tar.gz
+Version  : 2.02
+Release  : 35
+URL      : https://cpan.metacpan.org/authors/id/D/DC/DCANTRELL/Devel-CheckOS-2.02.tar.gz
+Source0  : https://cpan.metacpan.org/authors/id/D/DC/DCANTRELL/Devel-CheckOS-2.02.tar.gz
 Summary  : unknown
 Group    : Development/Tools
 License  : Artistic-1.0-Perl GPL-2.0
@@ -75,10 +75,10 @@ perl components for the perl-Devel-CheckOS package.
 
 
 %prep
-%setup -q -n Devel-CheckOS-2.01
-cd %{_builddir}/Devel-CheckOS-2.01
+%setup -q -n Devel-CheckOS-2.02
+cd %{_builddir}/Devel-CheckOS-2.02
 pushd ..
-cp -a Devel-CheckOS-2.01 buildavx2
+cp -a Devel-CheckOS-2.02 buildavx2
 popd
 
 %build
@@ -197,6 +197,7 @@ find %{buildroot} -type f -name '*.bs' -empty -exec rm -f {} ';'
 /usr/share/man/man3/Devel::AssertOS::OS400.3
 /usr/share/man/man3/Devel::AssertOS::OSF.3
 /usr/share/man/man3/Devel::AssertOS::OSFeatures::POSIXShellRedirection.3
+/usr/share/man/man3/Devel::AssertOS::OSFeatures::Release.3
 /usr/share/man/man3/Devel::AssertOS::OSFeatures::Systemd.3
 /usr/share/man/man3/Devel::AssertOS::OpenBSD.3
 /usr/share/man/man3/Devel::AssertOS::POSIXBC.3
