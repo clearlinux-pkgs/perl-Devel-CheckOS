@@ -6,10 +6,10 @@
 # autospec commit: 5905be9
 #
 Name     : perl-Devel-CheckOS
-Version  : 2.03
-Release  : 36
-URL      : https://cpan.metacpan.org/authors/id/D/DC/DCANTRELL/Devel-CheckOS-2.03.tar.gz
-Source0  : https://cpan.metacpan.org/authors/id/D/DC/DCANTRELL/Devel-CheckOS-2.03.tar.gz
+Version  : 2.04
+Release  : 37
+URL      : https://cpan.metacpan.org/authors/id/D/DC/DCANTRELL/Devel-CheckOS-2.04.tar.gz
+Source0  : https://cpan.metacpan.org/authors/id/D/DC/DCANTRELL/Devel-CheckOS-2.04.tar.gz
 Summary  : unknown
 Group    : Development/Tools
 License  : Artistic-1.0-Perl GPL-2.0
@@ -75,10 +75,10 @@ perl components for the perl-Devel-CheckOS package.
 
 
 %prep
-%setup -q -n Devel-CheckOS-2.03
-cd %{_builddir}/Devel-CheckOS-2.03
+%setup -q -n Devel-CheckOS-2.04
+cd %{_builddir}/Devel-CheckOS-2.04
 pushd ..
-cp -a Devel-CheckOS-2.03 buildavx2
+cp -a Devel-CheckOS-2.04 buildavx2
 popd
 
 %build
@@ -151,10 +151,27 @@ find %{buildroot} -type f -name '*.bs' -empty -exec rm -f {} ';'
 /usr/share/man/man3/Devel::AssertOS::Interix.3
 /usr/share/man/man3/Devel::AssertOS::Irix.3
 /usr/share/man/man3/Devel::AssertOS::Linux.3
+/usr/share/man/man3/Devel::AssertOS::Linux::Alma.3
+/usr/share/man/man3/Devel::AssertOS::Linux::Alpine.3
+/usr/share/man/man3/Devel::AssertOS::Linux::Arch.3
+/usr/share/man/man3/Devel::AssertOS::Linux::Centos.3
 /usr/share/man/man3/Devel::AssertOS::Linux::Debian.3
 /usr/share/man/man3/Devel::AssertOS::Linux::Devuan.3
+/usr/share/man/man3/Devel::AssertOS::Linux::Elementary.3
+/usr/share/man/man3/Devel::AssertOS::Linux::Fedora.3
+/usr/share/man/man3/Devel::AssertOS::Linux::Gentoo.3
+/usr/share/man/man3/Devel::AssertOS::Linux::NixOS.3
+/usr/share/man/man3/Devel::AssertOS::Linux::OpenSUSE.3
+/usr/share/man/man3/Devel::AssertOS::Linux::Oracle.3
+/usr/share/man/man3/Devel::AssertOS::Linux::PopOS.3
+/usr/share/man/man3/Devel::AssertOS::Linux::RHEL.3
 /usr/share/man/man3/Devel::AssertOS::Linux::Raspbian.3
 /usr/share/man/man3/Devel::AssertOS::Linux::RealDebian.3
+/usr/share/man/man3/Devel::AssertOS::Linux::Redhat.3
+/usr/share/man/man3/Devel::AssertOS::Linux::Rocky.3
+/usr/share/man/man3/Devel::AssertOS::Linux::SLES.3
+/usr/share/man/man3/Devel::AssertOS::Linux::SUSE.3
+/usr/share/man/man3/Devel::AssertOS::Linux::Slackware.3
 /usr/share/man/man3/Devel::AssertOS::Linux::Ubuntu.3
 /usr/share/man/man3/Devel::AssertOS::Linux::UnknownDebianLike.3
 /usr/share/man/man3/Devel::AssertOS::Linux::v2_6.3
@@ -197,7 +214,6 @@ find %{buildroot} -type f -name '*.bs' -empty -exec rm -f {} ';'
 /usr/share/man/man3/Devel::AssertOS::OS400.3
 /usr/share/man/man3/Devel::AssertOS::OSF.3
 /usr/share/man/man3/Devel::AssertOS::OSFeatures::POSIXShellRedirection.3
-/usr/share/man/man3/Devel::AssertOS::OSFeatures::Release.3
 /usr/share/man/man3/Devel::AssertOS::OSFeatures::Systemd.3
 /usr/share/man/man3/Devel::AssertOS::OpenBSD.3
 /usr/share/man/man3/Devel::AssertOS::POSIXBC.3
@@ -220,6 +236,7 @@ find %{buildroot} -type f -name '*.bs' -empty -exec rm -f {} ';'
 /usr/share/man/man3/Devel::AssertOS::iOS.3
 /usr/share/man/man3/Devel::CheckOS.3
 /usr/share/man/man3/Devel::CheckOS::Families.3
+/usr/share/man/man3/Devel::CheckOS::Helpers::LinuxOSrelease.3
 
 %files license
 %defattr(0644,root,root,0755)
