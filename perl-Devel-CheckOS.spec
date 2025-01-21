@@ -7,7 +7,7 @@
 #
 Name     : perl-Devel-CheckOS
 Version  : 2.04
-Release  : 38
+Release  : 39
 URL      : https://cpan.metacpan.org/authors/id/D/DC/DCANTRELL/Devel-CheckOS-2.04.tar.gz
 Source0  : https://cpan.metacpan.org/authors/id/D/DC/DCANTRELL/Devel-CheckOS-2.04.tar.gz
 Summary  : unknown
